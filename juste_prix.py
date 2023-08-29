@@ -3,27 +3,36 @@ import random
 cible = random.randint(1,10)
 essai = None
 
-for i in range(1,6):
-    # choix du prix du joueur
-    try:
-        essai = int(input(f"essai n°{i} - prix ? "))
-    except:
-        print("Valeur incorecte...")
-        continue # Redémarre à l'itération suivante
-
+def verif(cible_param, essai_param):
     # Message "Bravo" si le prix est trouvé
-    if cible == essai:
+    if cible_param == essai_param:
         print("Bravo !!!")
-        break
+        return 0
     # Message "PAS ASSEZ" si le prix est trop bas
-    elif cible > essai:
+    elif cible_param > essai_param:
         print("Pas assez !!!")
     # Message "TROP ELEVE" si le prix est trop haut
     else:
         print("Trop elevé !!!")
+    return 1
 
-# Message "PERDU" au bout de 5 essais
-if (cible != essai):
-    print("Perdu...")
+print(__name__)
 
-# Fin au bout de 5 essais ou si le prix est trouvé
+if __name__ == '__main__':
+
+    for i in range(1,6):
+        # choix du prix du joueur
+        try:
+            essai = int(input(f"essai n°{i} - prix ? "))
+        except:
+            print("Valeur incorecte...")
+            continue # Redémarre à l'itération suivante
+
+        if verif(cible,essai) == 0:
+            break
+
+    # Message "PERDU" au bout de 5 essais
+    if (cible != essai):
+        print("Perdu...")
+
+    # Fin au bout de 5 essais ou si le prix est trouvé
